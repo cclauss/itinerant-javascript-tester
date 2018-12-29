@@ -11,7 +11,7 @@ env:
   - REPO=facebook/react
   - REPO=SaraVieira/fiddly
 
-install: npm install -g eslint eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard flatted --save-dev
+install: npm install -g eslint eslint-plugin-import eslint-plugin-jest eslint-plugin-node eslint-plugin-promise eslint-plugin-standard flatted --save-dev
 before_script:
   - URL=https://github.com/${REPO}
   - git clone --depth=50 ${URL} ${REPO}  # --branch=master
