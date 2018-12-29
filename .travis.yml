@@ -1,59 +1,24 @@
 group: travis_latest
-dist: xenial  # required for Python >= 3.7 (travis-ci/travis-ci#9069)
-language: python
-cache: pip
-python:
-  #- 2.7
-  #- 3.4
-  #- 3.5
-  #- 3.6
-  - 3.7
-matrix:
-  allow_failures:
-    - python: 2.7
-    - python: nightly
-    - python: pypy
-    - python: pypy3
+language: node_js
+node_js: "11"
 env:
-    - REPO=piyush-kgp/Algorithms-Specialization-Stanford
-    - REPO=piyush-kgp/Daily-Coding-Problems
-    - REPO=piyush-kgp/Digit-Recognition-with-TFJS
-    - REPO=piyush-kgp/Face-Recognition-with-FaceNet
-    - REPO=piyush-kgp/GAN-Lab
-    - REPO=piyush-kgp/Intent-Detection
-    - REPO=piyush-kgp/Leetcode
-    - REPO=piyush-kgp/Music-Generation-with-deep-learning
-    - REPO=piyush-kgp/Neural-Style-Transfer
-    - REPO=piyush-kgp/OpenCV-assignments
-    - REPO=piyush-kgp/PyData-Seattle
-    - REPO=piyush-kgp/Python  # has .travis.yml file
-    - REPO=piyush-kgp/cartoonify
-    - REPO=piyush-kgp/cleverhans  # has .travis.yml file
-    - REPO=piyush-kgp/codechef_practice
-    - REPO=piyush-kgp/cs231n
-    - REPO=piyush-kgp/datasets  # has .travis.yml file
-    - REPO=piyush-kgp/models
-    - REPO=piyush-kgp/musical_lstm
-    - REPO=piyush-kgp/python-docs-samples  # has .travis.yml file
-    - REPO=piyush-kgp/python-fire  # has .travis.yml file
-    - REPO=piyush-kgp/temp-dir2
-    - REPO=piyush-kgp/temp_dir
-    - REPO=piyush-kgp/utility_scripts    
-install:
-  #- pip install -r requirements.txt
-  - pip install flake8  # pytest  # add other testing frameworks later
+  - REPO=BrainJS/brain.js
+  - REPO=i0natan/nodebestpractices
+  - REPO=vuejs/vue
+  - REPO=iamkun/dayjs
+  - REPO=swc-project/swc
+  - REPO=trekhleb/javascript-algorithms
+  - REPO=facebook/react
+  - REPO=SaraVieira/fiddly
+
+install: npm install -g eslint
 before_script:
   - URL=https://github.com/${REPO}
-  - echo ; echo -n "flake8 testing of ${URL} on " ; python -V
-  - git clone --depth=50 ${URL} ~/${REPO}  # --branch=master
+  - git clone --depth=50 ${URL} ~/${REPO} --branch=master
   - cd ~/${REPO}
 script:
-  - echo stop the build if there are Python syntax errors or undefined names
-  - echo ; echo -n "flake8 testing of ${URL} on " ; python -V
-  - time flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
-  - echo exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
-  - time flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-  #- true  # pytest --capture=sys
+  - echo ; echo -n "eslint testing of ${URL} on " ; node --version
+  - eslint . 
 notifications:
   on_success: change
   on_failure: change  # `always` will be the setting once code changes slow down
