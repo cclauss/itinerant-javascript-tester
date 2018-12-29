@@ -18,7 +18,7 @@ before_script:
   - cd ~/${REPO}
 script:
   - echo ; echo -n "eslint testing of ${URL} on " ; node --version
-  - eslint --config ../eslintrc.json .
+  - eslint --config ../../eslintrc.json .
 notifications:
   on_success: change
   on_failure: change  # `always` will be the setting once code changes slow down
