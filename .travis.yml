@@ -14,11 +14,10 @@ env:
 install: npm install -g eslint
 before_script:
   - URL=https://github.com/${REPO}
-  - git clone --depth=50 ${URL} ~/${REPO}  # --branch=master
-  - cd ~/${REPO}
+  - git clone --depth=50 ${URL} ${REPO}  # --branch=master
 script:
   - echo ; echo -n "eslint testing of ${URL} on " ; node --version
-  - eslint --config ../../eslintrc.json .
+  - eslint --config eslintrc.json ${REPO}
 notifications:
   on_success: change
   on_failure: change  # `always` will be the setting once code changes slow down
